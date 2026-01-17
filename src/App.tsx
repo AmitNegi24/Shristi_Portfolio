@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./App.css";
-import devimg from "./assets/shristidev.png";
+import devimg from "./assets/ShristiAvatar.png";
 import design from "./assets/design.png";
 import code from "./assets/code.png";
 import consulting from "./assets/consulting.png";
