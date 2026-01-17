@@ -1,0 +1,298 @@
+/* ---------------- GOOGLE FONT ---------------- */
+@import url("https://fonts.googleapis.com/css2?family=Festive&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Festive&family=Pacifico&display=swap');
+
+.festive-regular {
+  font-family: "Festive", cursive;
+}
+.festive-regular2 {
+  font-family: "Festive", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ---------------- HTML & BODY ---------------- */
+/* GLOBAL APP BACKGROUND */
+.app-wrapper {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* LIGHT MODE */
+.app-wrapper.light {
+  background-color: #defde0; /* beige */
+  color: #1f2937;
+}
+
+/* DARK MODE */
+.app-wrapper.dark {
+  background: linear-gradient(to bottom, #0b0b2b, #1b2735 70%, #090a0f);
+  color: #f9fafb;
+}
+
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+h1 {
+ font-size: clamp(12px, 8vw, 100px);
+ text-align: center;
+ line-height: 0.67;
+ margin: 0 auto;
+ font-family: "wild_worldbold";
+
+ .eyebrow {
+  font-family: "Open sans", sans-serif;
+  font-size: clamp(12px, 3vw, 40px);
+  font-weight: 400;
+ }
+}
+h2{
+  font-family: "wild_worldbold";
+}
+
+body {
+  min-height: 100vh;
+  font-family: sans-serif;
+  overflow-x: hidden;
+  background: linear-gradient(to bottom, #f9fafb, #f0f0f0 70%, #ffffff);
+  color: black;
+  transition: background 0.9s ease, color 0.9s ease;
+  position: relative;
+  z-index: 1;
+  background-color: #f7a522;
+}
+
+
+
+/* ---------------- DARK MODE ---------------- */
+.dark {
+  background: linear-gradient(to bottom, #0b0b2b, #1b2735 70%, #090a0f);
+  color: #f9fafb;
+  transition: background 0.9s ease, color 0.9s ease;
+}
+
+.dark p,
+.dark span,
+.dark h3,
+.dark h4 ,
+.dark h2{
+  color: #d1d5db;
+}
+
+.dark .card,
+.dark .slide-card {
+  background-color: #1f2937;
+}
+
+.dark .text-gray-800 {
+  color: #d1d5db;
+}
+
+.dark .text-teal-600 {
+  color: #14b8a6;
+}
+
+.dark .hover\:text-green-400:hover {
+  color: #4ade80; 
+}
+
+/* ---------------- STAR BACKGROUND (DARK MODE ONLY) ---------------- */
+.dark .stars-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.dark .stars-wrapper .stars {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  background: white;
+  box-shadow:
+    2vw 5vh 2px white, 10vw 8vh 2px white, 15vw 15vh 1px white,
+    22vw 22vh 1px white, 28vw 12vh 2px white, 32vw 32vh 1px white,
+    38vw 18vh 2px white, 42vw 35vh 1px white, 48vw 25vh 2px white,
+    53vw 42vh 1px white, 58vw 15vh 2px white, 63vw 38vh 1px white,
+    68vw 28vh 2px white, 73vw 45vh 1px white, 78vw 32vh 2px white,
+    83vw 48vh 1px white, 88vw 20vh 2px white, 93vw 52vh 1px white,
+    98vw 35vh 2px white;
+  animation: twinkle 8s infinite linear;
+}
+
+.dark .stars-wrapper .stars::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: white;
+  box-shadow:
+    5vw 60vh 1px white, 12vw 65vh 2px white, 18vw 72vh 1px white,
+    25vw 78vh 2px white, 30vw 85vh 1px white, 35vw 68vh 2px white,
+    40vw 82vh 1px white, 45vw 92vh 2px white, 50vw 75vh 1px white,
+    55vw 88vh 2px white, 60vw 95vh 1px white;
+  animation: twinkle 6s infinite linear reverse;
+}
+
+/* ---------------- SHOOTING STARS ---------------- */
+.dark .stars-wrapper .shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, white, transparent);
+  animation: shoot 4s infinite ease-in;
+}
+
+.dark .stars-wrapper .shooting-star:nth-child(2) { top: 20%; left: -120px; animation-delay: 0s; }
+.dark .stars-wrapper .shooting-star:nth-child(3) { top: 40%; left: -120px; animation-delay: 1.5s; }
+.dark .stars-wrapper .shooting-star:nth-child(4) { top: 60%; left: -120px; animation-delay: 3s; }
+
+/* ---------------- SLIDE-IN ANIMATION ---------------- */
+.view-poll {
+  opacity: 0;
+  transform: translateY(50px); /* Slide up on scroll */
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- GSAP CARD STYLING ---------------- */
+.slide-card {
+  background: white;
+  transform-origin: center top;
+  will-change: transform;
+  z-index: 2;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes shoot {
+  0% {
+    transform: translateX(0) translateY(0) rotate(25deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(130vw) translateY(60vh) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+
+nav {
+  position: sticky; /* or 'fixed' to always stick at top */
+  top: 0;           /* stick to the top of the viewport */
+  left: 0;
+  width: 100%;
+  z-index: 50;      /* make sure it's above other elements */
+  backdrop-filter: blur(10px); /* nice blur effect */
+  padding: 1rem 2.5rem; /* adjust spacing */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Optional: Add shadow when scrolling (just static CSS) */
+nav.scrolled {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.services-title {
+  font-size: 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.services-title .char {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Light mode */
+/* ---------------- LIGHT MODE FLOATING BUBBLES ---------------- */
+.light-bubbles-wrapper {
+  position: fixed;
+  top: -60px;      /* move upward */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+.light-bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: floatUp linear infinite;
+}
+
+.light-bubble:nth-child(1) {
+  width: 60px; height: 60px;
+  background: rgb(255, 0, 221);
+  left: 10%;
+  animation-duration: 25s;
+  animation-delay: 0s;
+}
+
+.light-bubble:nth-child(2) {
+  width: 40px; height: 40px;
+  background: rgb(95, 10, 231);
+  left: 40%;
+  animation-duration: 20s;
+  animation-delay: 5s;
+}
+
+.light-bubble:nth-child(3) {
+  width: 70px; height: 70px;
+  background: rgb(245, 0, 0);
+  left: 70%;
+  animation-duration: 30s;
+  animation-delay: 2s;
+}
+
+.light-bubble:nth-child(4) {
+  width: 100px; height: 100px;
+  background: rgb(36, 213, 236);
+  left: 25%;
+  animation-duration: 28s;
+  animation-delay: 3s;
+}
+
+.light-bubble:nth-child(5) {
+  width: 65px; height: 65px;
+  background: rgba(0, 255, 76, 0.979);
+  left: 85%;
+  animation-duration: 22s;
+  animation-delay: 6s;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-20vh) scale(1.1);
+    opacity: 0;
+  }
+}
+
