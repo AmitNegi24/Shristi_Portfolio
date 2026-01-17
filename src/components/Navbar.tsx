@@ -11,10 +11,10 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
     <nav className="flex items-center justify-between px-6 py-4 md:px-10">
       {/* LEFT */}
       <Link to="/" className="flex items-center gap-2">
-      <h2 className="text-4xl festive-regular sm:text-3xl md:text-2xl cursor-pointer">
-        Thinkers
-      </h2>
-    </Link>
+        <h2 className="text-4xl festive-regular sm:text-3xl md:text-2xl cursor-pointer">
+          Thinkers
+        </h2>
+      </Link>
       {/* CENTER (empty spacer for future use) */}
       <div className="flex-1"></div>
 
@@ -28,7 +28,10 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
         </li>
 
         <li>
-          <a className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-lg font-semibold">
+          <a className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-lg font-semibold"
+            href="https://drive.google.com/file/d/1Px3gnQt_Qa0lHvL1Md6Q3RDsi4XWO4Nu/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer">
             Resume
           </a>
         </li>
