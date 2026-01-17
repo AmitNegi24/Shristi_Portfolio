@@ -3,7 +3,7 @@ import coffeeShop from "../assets/CoffeeShop.jpeg";
 import coffeeOverview from "../assets/CoffeeOverView.png";
 import coffeetoffee from "../assets/CoffeeToffee.png";
 import chandan from "../assets/Chandan.png";
-import Bhaag from "../assets/Bhaag.png";
+import Bhaag from "../assets/bhaag.png";
 import Logo from "../assets/Logo.jpeg";
 import colorpalette2 from "../assets/colorpallete2.jpeg"
 import Aurat from "../assets/Aurat.png";
