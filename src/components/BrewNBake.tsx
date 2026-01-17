@@ -12,6 +12,10 @@ import planeImg from "../assets/pink-plane.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import img1 from "../assets/image1.jpeg";
+import img2 from "../assets/image2.jpeg";
+
+const images = [img1, img2];
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -176,16 +180,16 @@ function BrewNBake({
                         <h2>High Fidelity - Wireframes</h2>
                     </div>
                     <div className="flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap">
-                        {[1, 2].map(i => (
-                            <div key={i} className="basis-1/3 flex-1">
-                                <img
-                                    src={`./src/assets/image${i}.jpeg`}
-                                    className="slide-card rounded-lg object-cover w-full h-full"
-                                    alt={`image-${i}`}
-                                />
-                            </div>
-                        ))}
-                    </div>
+          {images.map((img, i) => (
+            <div key={i} className="basis-1/3 flex-1">
+              <img
+                src={img}
+                className="rounded-lg object-cover w-full h-full"
+                alt={`mockup-${i}`}
+              />
+            </div>
+          ))}
+        </div>
                     <div className="flex justify-center mt-3 md:mt-10 font-bold">
                         <h2>LOGO</h2>
                     </div>

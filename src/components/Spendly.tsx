@@ -35,16 +35,20 @@ function Project2({
               <div className="flex justify-center">
                 <h2 className="font-bold">OVERVIEW</h2>
               </div>
+              <div className="flex justify-center mt-3">
+                <p>
+                  Spendly is a personal finance management app that helps users track expenses, manage subscriptions, and achieve financial goals through real-time insights and visual analytics.
+                  The app focuses on clarity, control, and consistency in money management.
+                </p>
+              </div>
 
-              <p>
-                Spendly is a personal finance management app that helps users track expenses, manage subscriptions, and achieve financial goals through real-time insights and visual analytics.
-                The app focuses on clarity, control, and consistency in money management.
-              </p>
               <br></br>
               <h2 className="font-bold">PROBLEM STATEMENT</h2>
-              <p>
-                Young adults and early professionals struggle with managing finances because:
-              </p>
+              <div className="flex justify-center mt-3">
+                <p>
+                  Young adults and early professionals struggle with managing finances because:
+                </p>
+              </div>
               <br></br>
               <h3 className="text-lg md:text-2xl font-semibold mb-4">
                 Why managing money feels hard
@@ -102,7 +106,7 @@ function Project2({
 
                 <div className="">
                   <h2 className="font-bold">DESIGN APPROACH</h2>
-                  <ol className="list-decimal mx-10">
+                  <ol className="list-decimal mx-10 mt-3">
                     <li>Dark UI to reduce eye strain and enhance data contrast</li>
                     <li>Minimal layouts to avoid information overload</li>
                     <li>Bold accent colors to highlight key actions and insights</li>
@@ -118,7 +122,9 @@ function Project2({
                   <div>
                     <br></br>
                     <h2 className="font-bold">OUTCOME</h2>
-                    <p>The final design delivers a modern, intuitive finance app experience that helps users understand their spending behavior and take control of their finances with confidence.</p>
+                    <div className="flex justify-center mt-3">
+                      <p>The final design delivers a modern, intuitive finance app experience that helps users understand their spending behavior and take control of their finances with confidence.</p>
+                    </div>
                   </div>
                   <div className="flex justify-center ">
                     <img src={Aurat} className="w-60 h-60" />

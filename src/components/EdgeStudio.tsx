@@ -5,6 +5,10 @@ import WireFrame from "../assets/WireFrame3.jpeg";
 import Logo from "../assets/Logo1.jpeg";
 import colorpalette from "../assets/Colorpallete3.jpeg";
 import Aurat from "../assets/Aurat.png";
+import img1 from "../assets/Edgemockup1.jpeg";
+import img2 from "../assets/Edgemockup2.jpeg";
+
+const images = [img1, img2];
 
 function BrewNBake({
   darkMode,
@@ -60,10 +64,10 @@ function BrewNBake({
         </div>
 
         <div className="flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap">
-          {[1, 2].map(i => (
+          {images.map((img, i) => (
             <div key={i} className="basis-1/3 flex-1">
               <img
-                src={`./src/assets/Edgemockup${i}.jpeg`}
+                src={img}
                 className="rounded-lg object-cover w-full h-full"
                 alt={`mockup-${i}`}
               />

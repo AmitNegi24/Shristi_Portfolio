@@ -82,7 +82,7 @@ function App() {
                       Shristi Badoni
                     </h1>
                     <h3 className="text-2xl py-2 md:text-3xl">
-                      UI/UX Designer & Product Designer
+                      UI/UX & Product Designer
                     </h3>
                     <p className="text-md py-5 leading-8 text-gray-800 md:text-xl max-w-lg mx-auto">
                       I am a UI/UX designer with a passion for creating beautiful and functional designs.
