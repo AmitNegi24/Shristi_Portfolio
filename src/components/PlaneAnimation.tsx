@@ -18,23 +18,23 @@ const PlaneAnimation = () => {
     gsap.set(planeRef.current, { autoAlpha: 0, x: -200 });
 
     // Plane motion along path
-    const planeTween = gsap.to(planeRef.current, {
-      scrollTrigger: {
-        trigger: pathRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.5,
-      },
-      autoAlpha: 1,
-      x: 0,
-      motionPath: {
-        path: pathRef.current,
-        align: pathRef.current,
-        alignOrigin: [0.5, 0.5],
-        autoRotate: true,
-      },
-      ease: "power1.inOut",
-    });
+    // const planeTween = gsap.to(planeRef.current, {
+    //   scrollTrigger: {
+    //     trigger: pathRef.current,
+    //     start: "top top",
+    //     end: "bottom bottom",
+    //     scrub: 1.5,
+    //   },
+    //   autoAlpha: 1,
+    //   x: 0,
+    //   motionPath: {
+    //     path: pathRef.current,
+    //     align: pathRef.current,
+    //     alignOrigin: [0.5, 0.5],
+    //     autoRotate: true,
+    //   },
+    //   ease: "power1.inOut",
+    // });
 
     // Trail effect: fade out streaks behind the plane
     gsap.to(trailRef.current, {

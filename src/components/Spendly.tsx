@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./Navbar";
 import spendly from "../assets/spendly1.jpeg"
-import spendlypng from "../assets/spendly2.png"
 import Aurat from "../assets/Aurat.png";
 import spendly3 from "../assets/spendly3.png"
 import mockup1 from "../assets/mockup1.png"
@@ -55,7 +54,7 @@ function Project2({
                   <img
                     src={spendly3}
                     alt="Spendly illustration"
-                    className="w-[100%] h-[80%] object-fill md:object-contain md:h-full md:w-full"
+                    className="w-full h-[80%] object-fill md:object-contain md:h-full md:w-full"
                   />
                 </div>
                 <div className="w-1/2 p-4 md:p-12 flex flex-col justify-center">

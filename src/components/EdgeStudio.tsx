@@ -1,6 +1,4 @@
 import Navbar from "./Navbar";
-import PlaneAnimation from "./PlaneAnimation";
-
 import pic1 from "../assets/pic1.jpeg";
 import EdgeStudio from "../assets/EdgeStudio.jpeg";
 import WireFrame from "../assets/WireFrame3.jpeg";
