@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 import coffeeShop from "../assets/CoffeeShop.jpeg";
 import coffeeOverview from "../assets/CoffeeOverView.png";
 import coffeetoffee from "../assets/CoffeeToffee.png";
-import chandan from "../assets/chandan.png";
+import chandan from "../assets/Chandan.png";
 import Bhaag from "../assets/Bhaag.png";
 import Logo from "../assets/Logo.jpeg";
 import colorpalette2 from "../assets/colorpallete2.jpeg"
