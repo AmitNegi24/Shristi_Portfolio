@@ -13,7 +13,7 @@ import consulting from "./assets/consulting.png";
 
 import Projects from "./components/Projects";
 import Project2 from "./components/Spendly";
-import GaneshChaturthi from "./components/BrewNBake";
+import GaneshChaturthi from "./components/GaneshChaturthi";
 import EdgeStudio from "./components/EdgeStudio";
 import ContactCard from "./components/ContactCard";
 import ScrollToTop from "./components/ScrollToTop";

@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Navbar from "./Navbar";
-import visualDesign from "../assets/VisualDesign.pdf";
+
 import promotionalBanner from "../assets/GC.jpeg";
 import img1 from "../assets/image1.jpeg";
 import img2 from "../assets/image2.jpeg";
@@ -21,10 +21,7 @@ function GaneshChaturthi({
   darkMode: boolean;
   toggleDarkMode: () => void;
 }) {
-  const [isDocPageOpen, setIsDocPageOpen] = useState(false);
-
   const lenisRef = useRef<Lenis | null>(null);
-  const docPageRef = useRef<HTMLDivElement | null>(null);
 
   /* =========================================================
      LENIS SMOOTH SCROLL
@@ -94,96 +91,14 @@ function GaneshChaturthi({
     return () => ctx.revert();
   }, []);
 
-  /* =========================================================
-     OPEN DOCUMENT
-  ========================================================= */
-
-  const handleOpenDoc = () => {
-    lenisRef.current?.stop();
-
-    document.body.style.overflow = "hidden";
-
-    setIsDocPageOpen(true);
-  };
-
-  /* =========================================================
-     CLOSE DOCUMENT
-  ========================================================= */
-
-  const handleCloseDoc = () => {
-    if (!docPageRef.current) {
-      setIsDocPageOpen(false);
-
-      document.body.style.overflow = "";
-
-      lenisRef.current?.start();
-
-      return;
-    }
-
-    gsap.to(docPageRef.current, {
-      y: "100%",
-      opacity: 0,
-      duration: 0.35,
-      ease: "power3.in",
-
-      onComplete: () => {
-        setIsDocPageOpen(false);
-
-        document.body.style.overflow = "";
-
-        lenisRef.current?.start();
-      },
-    });
-  };
-
-  /* =========================================================
-     DOCUMENT OPEN ANIMATION
-  ========================================================= */
-
-  useEffect(() => {
-    if (isDocPageOpen && docPageRef.current) {
-      gsap.fromTo(
-        docPageRef.current,
-        {
-          y: "60px",
-          opacity: 0,
-        },
-        {
-          y: "0%",
-          opacity: 1,
-          duration: 0.45,
-          ease: "power3.out",
-        }
-      );
-    }
-  }, [isDocPageOpen]);
-
-  /* =========================================================
-     ESCAPE KEY
-  ========================================================= */
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isDocPageOpen) {
-        handleCloseDoc();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isDocPageOpen]);
-
   return (
     <>
       <div
-        className={`app-wrapper min-h-screen ${darkMode
-          ? "dark bg-stone-950 text-stone-100"
-          : "bg-[#f4f1eb] text-[#171717]"
-          }`}
+        className={`app-wrapper min-h-screen ${
+          darkMode
+            ? "dark bg-stone-950 text-stone-100"
+            : "bg-[#f4f1eb] text-[#171717]"
+        }`}
       >
         {/* ==================================================
             NAVBAR
@@ -225,18 +140,25 @@ function GaneshChaturthi({
                 </p>
               </div>
             </div>
+
             {/* PROJECT INTRO */}
+
             <div className="px-6 md:px-12 lg:px-20 xl:px-1 mt-16 md:mt-24 mb-10 md:mb-14">
               <div className="max-w-4xl">
-
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-[-0.04em] leading-[1.05]">
                   About the Campaign
                 </h2>
               </div>
+
               <p className="mt-6 w-full text-sm md:text-base lg:text-lg leading-7 md:leading-8 opacity-65">
-                A visual campaign for Sri Mandir, featuring a Ganesh Chaturthi guidebook and a promotional banner. The project brings festive content into a cohesive design, using devotional imagery, warm colours and clear typography to create an inviting reading experience.
+                A visual campaign for Sri Mandir, featuring a Ganesh
+                Chaturthi guidebook and a promotional banner. The project
+                brings festive content into a cohesive design, using
+                devotional imagery, warm colours and clear typography to
+                create an inviting reading experience.
               </p>
             </div>
+
             {/* FULL WIDTH HERO IMAGE */}
 
             <div className="mt-3 justify-center md:flex md:mx-2">
@@ -249,9 +171,8 @@ function GaneshChaturthi({
           </section>
 
           {/* ==================================================
-              A SECTION
+              SECTION 01 — PROJECT OVERVIEW
           ================================================== */}
-
 
           <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pt-8 md:pt-12 pb-0">
             <span className="text-xs opacity-40">
@@ -262,7 +183,6 @@ function GaneshChaturthi({
               {/* LEFT */}
 
               <div>
-
                 <h2 className="text-4xl md:text-6xl lg:text-7xl tracking-[-0.04em] leading-[1.03] font-medium">
                   Celebrating tradition
                   <br />
@@ -277,20 +197,17 @@ function GaneshChaturthi({
               <div className="lg:pt-14 space-y-6 text-sm md:text-base leading-8 opacity-65">
                 <p>
                   I designed the guidebook with a focus on readability,
-                  visual hierarchy and consistent page layouts.
-                  The composition balances imagery and text,
-                  helping readers navigate the content while maintaining a
-                  festive mood throughout.I designed the guidebook with a focus on
-                  readability, visual hierarchy and consistent page layouts.
-                  The composition balances imagery and text, helping readers navigate the content while maintaining a festive mood throughout.
+                  visual hierarchy and consistent page layouts. The
+                  composition balances imagery and text, helping readers
+                  navigate the content while maintaining a festive mood
+                  throughout.
                 </p>
 
                 <p>
-                  The project combines a detailed digital
-                  guidebook with a promotional banner,
-                  covering important aspects of Ganesh
-                  Chaturthi including rituals, puja
-                  essentials, traditions and Visarjan.
+                  The project combines a detailed digital guidebook with a
+                  promotional banner, covering important aspects of Ganesh
+                  Chaturthi including rituals, puja essentials, traditions
+                  and Visarjan.
                 </p>
               </div>
             </div>
@@ -341,13 +258,12 @@ function GaneshChaturthi({
           </section>
 
           {/* ==================================================
-              DIGITAL GUIDEBOOK
+              SECTION 02 — GUIDEBOOK VISUALS
           ================================================== */}
 
-
           <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pb-20 md:pb-28 -mt-24 md:-mt-32">
-
             {/* IMAGE 1 — FULL WIDTH */}
+
             <div className="w-full overflow-hidden">
               <img
                 src={img1}
@@ -357,9 +273,8 @@ function GaneshChaturthi({
             </div>
 
             {/* IMAGE 2 + IMAGE 3 — HALF / HALF */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
 
-              {/* IMAGE 2 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
               <div className="w-full overflow-hidden">
                 <img
                   src={img2}
@@ -368,7 +283,6 @@ function GaneshChaturthi({
                 />
               </div>
 
-              {/* IMAGE 3 */}
               <div className="w-full overflow-hidden">
                 <img
                   src={img3}
@@ -376,13 +290,11 @@ function GaneshChaturthi({
                   className="w-full h-full object-cover"
                 />
               </div>
-
             </div>
-
           </section>
 
           {/* ==================================================
-              PROMOTIONAL BANNER
+              SECTION 03 — PROMOTIONAL BANNER
           ================================================== */}
 
           <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 py-20 md:py-32">
@@ -411,18 +323,15 @@ function GaneshChaturthi({
 
               <div>
                 <p className="text-base leading-8 opacity-65">
-                  Alongside the guidebook, I designed a
-                  promotional banner to introduce the guide
-                  and encourage users to explore the complete
-                  Ganesh Chaturthi resource.
+                  Alongside the guidebook, I designed a promotional banner
+                  to introduce the guide and encourage users to explore the
+                  complete Ganesh Chaturthi resource.
                 </p>
 
                 <p className="text-base leading-8 opacity-65 mt-5">
-                  The banner follows the same festive visual
-                  language as the guidebook, creating
-                  consistency across the campaign while
-                  highlighting the most important
-                  information.
+                  The banner follows the same festive visual language as the
+                  guidebook, creating consistency across the campaign while
+                  highlighting the most important information.
                 </p>
               </div>
 
@@ -439,7 +348,7 @@ function GaneshChaturthi({
           </section>
 
           {/* ==================================================
-              DESIGN APPROACH
+              SECTION 04 — DESIGN APPROACH
           ================================================== */}
 
           <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 py-20 md:py-32">
@@ -468,16 +377,15 @@ function GaneshChaturthi({
 
               <div className="lg:pt-24">
                 <p className="text-base md:text-lg leading-8 opacity-65 max-w-xl">
-                  I used a warm, devotional and festive visual
-                  direction, combining traditional Indian
-                  elements with a clean editorial layout.
+                  I used a warm, devotional and festive visual direction,
+                  combining traditional Indian elements with a clean
+                  editorial layout.
                 </p>
 
                 <p className="text-base md:text-lg leading-8 opacity-65 max-w-xl mt-6">
-                  The visual hierarchy was designed to make
-                  dense festival information feel
-                  approachable while preserving the cultural
-                  character of Ganesh Chaturthi.
+                  The visual hierarchy was designed to make dense festival
+                  information feel approachable while preserving the
+                  cultural character of Ganesh Chaturthi.
                 </p>
               </div>
             </div>
@@ -509,13 +417,12 @@ function GaneshChaturthi({
             </h2>
 
             <p className="max-w-xl mx-auto text-sm md:text-base leading-7 opacity-50 mt-8">
-              View the complete digital guidebook and explore
-              the detailed festival information, visual
-              system and editorial layouts.
+              View the complete digital guidebook and explore the detailed
+              festival information, visual system and editorial layouts.
             </p>
 
             <a
-              href="https://drive.google.com/drive/folders/1-3V75PjPo_Aa5hZWbkyz3K4NxesoFY6O](https://drive.google.com/drive/folders/1-3V75PjPo_Aa5hZWbkyz3K4NxesoFY6O"
+              href="https://drive.google.com/drive/folders/1-3V75PjPo_Aa5hZWbkyz3K4NxesoFY6O"
               target="_blank"
               rel="noopener noreferrer"
               className="group mt-10 inline-flex items-center gap-12 bg-[#f5f2ec] text-[#171717] px-7 py-4 text-sm font-semibold transition-transform duration-300 hover:-translate-y-1 cursor-pointer"
@@ -529,84 +436,6 @@ function GaneshChaturthi({
           </section>
         </main>
       </div>
-
-      {/* ====================================================
-          PDF DOCUMENT VIEWER
-      ==================================================== */}
-
-      {isDocPageOpen && (
-        <div
-          ref={docPageRef}
-          className="fixed inset-0 z-[120] flex flex-col bg-stone-950 text-stone-100 will-change-transform"
-        >
-          {/* ==================================================
-              PDF TOPBAR
-          ================================================== */}
-
-          <nav className="h-16 border-b border-stone-800 bg-stone-950/95 backdrop-blur-md px-4 md:px-6 flex items-center justify-between flex-shrink-0">
-            {/* BACK */}
-
-            <button
-              onClick={handleCloseDoc}
-              className="inline-flex items-center gap-2 text-stone-400 hover:text-white text-sm font-medium transition cursor-pointer"
-            >
-              <span className="text-xl">
-                ←
-              </span>
-
-              <span className="hidden sm:inline">
-                Back to Case Study
-              </span>
-            </button>
-
-            {/* TITLE */}
-
-            <div className="text-center hidden md:block">
-              <h2 className="font-medium text-sm text-stone-200">
-                Ganesh Chaturthi Visual Campaign
-              </h2>
-
-              <span className="text-[10px] text-stone-500 uppercase tracking-[0.2em]">
-                Digital Guidebook
-              </span>
-            </div>
-
-            {/* ACTIONS */}
-
-            <div className="flex items-center gap-3">
-              <a
-                href={visualDesign}
-                download="Ganesh-Chaturthi-Visual-Campaign.pdf"
-                className="text-xs px-4 py-2 border border-stone-700 hover:bg-stone-800 transition"
-              >
-                Save PDF
-              </a>
-
-              <button
-                onClick={handleCloseDoc}
-                className="w-8 h-8 flex items-center justify-center hover:bg-stone-800 text-stone-400 hover:text-white transition cursor-pointer"
-                aria-label="Close presentation"
-              >
-                ✕
-              </button>
-            </div>
-          </nav>
-
-          {/* ==================================================
-              PDF VIEWPORT
-          ================================================== */}
-
-          <div className="flex-1 bg-[#111] p-3 md:p-7 flex justify-center overflow-hidden">
-            <div className="w-full max-w-5xl h-full overflow-hidden bg-stone-900 shadow-2xl">
-              <iframe
-                src={`${visualDesign}#toolbar=0&navpanes=0&view=FitH`}
-                className="w-full h-full border-none"
-                title="Ganesh Chaturthi Visual Campaign"
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
