@@ -119,10 +119,6 @@ function GaneshChaturthi({
 
             <div className="px-6 md:px-12 lg:px-20 xl:px-28">
               <div className="max-w-6xl mx-auto text-center pt-8 md:pt-12 pb-10 md:pb-14">
-                <p className="text-[10px] md:text-xs uppercase tracking-[0.28em] opacity-50 mb-4">
-                  Graphic Design
-                </p>
-
                 <h1 className="text-4xl font-bold mb-4 md:text-6xl lg:text-7xl tracking-[-0.04em] leading-[1.05]">
                   Ganesh Chaturthi
                 </h1>
