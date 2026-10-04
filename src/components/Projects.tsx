@@ -1,6 +1,6 @@
 import pic1 from "../assets/pic1.jpeg";
 import pic3 from "../assets/pic3.jpeg";
-import BrewNBake from "../assets/BrewnBake.jpeg";
+import Ganesh from "../assets/GC_visual.jpeg";
 import { Link } from "react-router-dom";
 
 function Projects() {
@@ -67,18 +67,18 @@ function Projects() {
                 <div className=" slide-card rounded-2xl shadow-xl overflow-hidden transition-transform duration-300 hover:-translate-y-1">
                     <div className="flex flex-col md:flex-row">
                         <div className="md:w-1/2 w-full h-64 md:h-96">
-                            <img src={BrewNBake} className="w-full h-full object-cover" />
+                            <img src={Ganesh} className="w-full h-full object-cover" />
                         </div>
 
                         <div className="md:w-1/2 w-full p-8 md:p-12 flex flex-col justify-center">
                             <h3 className="text-3xl font-semibold mb-4 ">
-                                BREW & BAKE
+                                Visual Campaign
                             </h3>
                             <p className="text-lg mb-8">
-                                A cafe ordering app concept focused on menu discovery and smooth ordering flows.
+                                A festive Ganesh Chaturthi campaign blending devotional visuals with clean, engaging design.
                             </p>
                             <Link
-                                to="/BrewNBake"
+                                to="/GaneshChaturthi"
                                 className="inline-flex items-center justify-center
                                             bg-gradient-to-r from-cyan-500 to-blue-500
                                           text-white px-8 py-3 rounded-xl font-semibold

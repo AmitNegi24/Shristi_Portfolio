@@ -13,7 +13,7 @@ import consulting from "./assets/consulting.png";
 
 import Projects from "./components/Projects";
 import Project2 from "./components/Spendly";
-import BrewNBake from "./components/BrewNBake";
+import GaneshChaturthi from "./components/BrewNBake";
 import EdgeStudio from "./components/EdgeStudio";
 import ContactCard from "./components/ContactCard";
 import ScrollToTop from "./components/ScrollToTop";
@@ -136,7 +136,7 @@ function App() {
 
         {/* PROJECT DETAIL */}
         <Route path="/project2" element={<Project2 darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
-        <Route path="/BrewNBake" element={<BrewNBake darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
+        <Route path="/GaneshChaturthi" element={<GaneshChaturthi darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
         <Route path="/EdgeStudio" element={<EdgeStudio darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
         <Route path="/ContactCard" element={<ContactCard />} />
       </Routes>

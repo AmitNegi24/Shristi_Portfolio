@@ -1,220 +1,614 @@
-import Navbar from "./Navbar";
-import coffeeShop from "../assets/CoffeeShop.jpeg";
-import coffeeOverview from "../assets/CoffeeOverView.png";
-import coffeetoffee from "../assets/CoffeeToffee.png";
-import chandan from "../assets/Chandan.png";
-import Bhaag from "../assets/bhaag.png";
-import Logo from "../assets/Logo.jpeg";
-import colorpalette2 from "../assets/colorpallete2.jpeg"
-import Aurat from "../assets/Aurat.png";
-import { useEffect, useRef } from "react";
-import planeImg from "../assets/pink-plane.png";
+import { useEffect, useRef, useState } from "react";
+import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+import Navbar from "./Navbar";
+import visualDesign from "../assets/VisualDesign.pdf";
+import promotionalBanner from "../assets/GC.jpeg";
 import img1 from "../assets/image1.jpeg";
 import img2 from "../assets/image2.jpeg";
+import img3 from "../assets/image3.jpeg";
+import Ganesh from "../assets/GC_visual.jpeg";
+import Ganesh2 from "../assets/Ganesh2.jpeg";
 
-const images = [img1, img2];
+gsap.registerPlugin(ScrollTrigger);
 
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
-
-function BrewNBake({
-    darkMode,
-    toggleDarkMode,
+function GaneshChaturthi({
+  darkMode,
+  toggleDarkMode,
 }: {
-    darkMode: boolean;
-    toggleDarkMode: () => void;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 }) {
-    const planeRef = useRef<HTMLImageElement | null>(null);
-    const pathRef = useRef<SVGPathElement | null>(null);
-    const trailRef = useRef<SVGPathElement | null>(null);
+  const [isDocPageOpen, setIsDocPageOpen] = useState(false);
 
-    useEffect(() => {
-        if (!planeRef.current || !pathRef.current || !trailRef.current) return;
+  const lenisRef = useRef<Lenis | null>(null);
+  const docPageRef = useRef<HTMLDivElement | null>(null);
 
-        // Plane motion along path
-        gsap.to(planeRef.current, {
+  /* =========================================================
+     LENIS SMOOTH SCROLL
+  ========================================================= */
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    lenisRef.current = lenis;
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    const updateTicker = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateTicker);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove(updateTicker);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, []);
+
+  /* =========================================================
+     SCROLL REVEAL
+  ========================================================= */
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const sections =
+        gsap.utils.toArray<HTMLElement>(".reveal-section");
+
+      sections.forEach((section) => {
+        gsap.fromTo(
+          section,
+          {
+            y: 50,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+
             scrollTrigger: {
-                trigger: pathRef.current,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 0.6, // smooth floaty motion
+              trigger: section,
+              start: "top 85%",
+              once: true,
             },
-            motionPath: {
-                path: pathRef.current,
-                align: pathRef.current,
-                alignOrigin: [0.5, 0.5],
-                autoRotate: true,
-            },
-            ease: "power2.out",
-        });
+          }
+        );
+      });
+    });
 
-        // Trail animation
-        const pathLength = trailRef.current.getTotalLength();
-        trailRef.current.style.strokeDasharray = `${pathLength}`;
-        trailRef.current.style.strokeDashoffset = `${pathLength}`;
+    return () => ctx.revert();
+  }, []);
 
-        gsap.to(trailRef.current, {
-            scrollTrigger: {
-                trigger: pathRef.current,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 0.6,
-            },
-            strokeDashoffset: 0,
-            ease: "none",
-        });
-    }, []);
+  /* =========================================================
+     OPEN DOCUMENT
+  ========================================================= */
 
-    return (
-        <>
-            <div className={`app-wrapper ${darkMode ? "dark" : "light"}`}>
-                <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+  const handleOpenDoc = () => {
+    lenisRef.current?.stop();
 
-                {/* Plane Animation */}
-                <div className="absolute top-24 left-4 z-50 pointer-events-none">
-                    {/* Hidden path */}
-                    <svg width="0" height="0">
-                        <path
-                            ref={pathRef}
-                            d="M50,100 C150,200 150,400 50,700"
-                            fill="none"
-                        />
-                    </svg>
+    document.body.style.overflow = "hidden";
 
-                    {/* Trail */}
-                    <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                        <path
-                            ref={trailRef}
-                            d="M50,100 C150,200 150,300 50,700"
-                            fill="none"
-                            stroke="url(#trailGradient)"
-                            strokeWidth={6}
-                            strokeLinecap="round"
-                            strokeOpacity={0.6}
-                        />
-                        <defs>
-                            <linearGradient id="trailGradient" x1="0" y1="0" x2="1" y2="1">
-                                <stop offset="0%" stopColor="#FFE9FE" />
-                                <stop offset="100%" stopColor="#FF96F9" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
+    setIsDocPageOpen(true);
+  };
 
-                    {/* Plane */}
-                    <img
-                        ref={planeRef}
-                        src={planeImg}
-                        alt="Paper Plane"
-                        className="w-[2.3cm] h-auto mix-blend-multiply opacity-50"
-                    />
-                </div>
-                <div className="p-8 md:p-0 md:mx-40 my-10">
-                    <h1 className="text-4xl font-bold mb-4">Brew & Bake</h1>
-                    <div className="flex  justify-center mt-3 md:mt-10 mx-10">
-                        <h2 className="text-center">WHere coffee feels home</h2>
-                    </div>
-                    <div className="mt-3 justify-center md:flex md:mx-2" >
-                        <img src={coffeeShop} alt="coffeeNotFound" />
-                    </div>
-                    <div className="mt-3 flex justify-center font-bold">
-                        <h2>OVERVIEW</h2>
-                    </div>
-                    <div className="flex justify-center">
-                        <img src={coffeeOverview} alt="coffeeNotFound" />
-                    </div>
-                    <div className="flex justify-center">
-                        <p>Brew & Bake is a cafe and bakery app concept designed to simplify online ordering while preserving a warm, cozy brand experience.</p>
-                    </div>
+  /* =========================================================
+     CLOSE DOCUMENT
+  ========================================================= */
 
-                    <div className="flex justify-center mt-5 font-bold">
-                        <h2>PROBLEM</h2>
-                    </div>
-                    <div className="flex flex-col md:flex-row mt-3">
-                        <div className="md:w-1/2 w-full h-auto md:h-auto">
-                            <img src={coffeetoffee} className="w-full h-full object-cover" />
-                        </div>
+  const handleCloseDoc = () => {
+    if (!docPageRef.current) {
+      setIsDocPageOpen(false);
 
-                        <div className="md:w-1/2 w-full flex flex-col justify-center">
-                            <p className="">
-                                Most café apps feel cluttered and transactional, making ordering slow and frustrating for users.
-                            </p>
-                            <p>
-                                Several café apps prioritize promotions and upsells over usability, resulting in interfaces that feel sales-driven rather than user-centric. This disrupts the calm, cozy experience users expect from a café.
-                            </p>
+      document.body.style.overflow = "";
 
-                            <p>
-                                Navigation is frequently inconsistent, forcing users to move across multiple screens just to complete a simple order. The lack of a clear, intuitive flow from browsing to checkout leads to frustration and abandoned orders.
-                            </p>
+      lenisRef.current?.start();
 
-                            <p>
-                                Dense typography, tight spacing, and poor contrast make menus difficult to scan. Users struggle to quickly compare items and prices, turning what should be an enjoyable process into a mentally taxing task.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex justify-center mt-3">
-                        <h2 className="font-bold">SOLUTION</h2>
-                    </div>
-                    <div className="flex flex-col md:flex-row mt-3">
-                        <div className="md:w-[30%] w-full h-auto md:h-auto justify-center">
-                            <img src={chandan} className="w-full max-w-xs h-100 md:mx-10 object-contain" />
-                        </div>
+      return;
+    }
 
-                        <div className="md:w-[70%] w-full flex flex-col justify-center">
-                            <p className="">
-                                The solution focused on creating a simple and efficient ordering flow that guides users from menu browsing to checkout with minimal steps. A warm color palette, rounded UI elements, and clear visual hierarchy were used to reflect the cozy café brand while keeping the interface easy to navigate. Large product imagery and readable typography help users make quick decisions without feeling overwhelmed.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex justify-center mt-3 md:mt-15">
-                        <h2 className="font-bold">OUTCOME</h2>
-                    </div>
-                    <div className="flex justify-center mt-3 md:mt-5">
-                        <p>A smooth, brand-focused café ordering experience that balances usability and aesthetics.</p>
-                    </div>
-                    <div className="flex justify-center">
-                        <img src={Bhaag}></img>
-                    </div>
-                    <div className="flex justify-center mt-3 md:mt-10 font-bold">
-                        <h2>High Fidelity - Wireframes</h2>
-                    </div>
-                    <div className="flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap">
-          {images.map((img, i) => (
-            <div key={i} className="basis-1/3 flex-1">
+    gsap.to(docPageRef.current, {
+      y: "100%",
+      opacity: 0,
+      duration: 0.35,
+      ease: "power3.in",
+
+      onComplete: () => {
+        setIsDocPageOpen(false);
+
+        document.body.style.overflow = "";
+
+        lenisRef.current?.start();
+      },
+    });
+  };
+
+  /* =========================================================
+     DOCUMENT OPEN ANIMATION
+  ========================================================= */
+
+  useEffect(() => {
+    if (isDocPageOpen && docPageRef.current) {
+      gsap.fromTo(
+        docPageRef.current,
+        {
+          y: "60px",
+          opacity: 0,
+        },
+        {
+          y: "0%",
+          opacity: 1,
+          duration: 0.45,
+          ease: "power3.out",
+        }
+      );
+    }
+  }, [isDocPageOpen]);
+
+  /* =========================================================
+     ESCAPE KEY
+  ========================================================= */
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isDocPageOpen) {
+        handleCloseDoc();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isDocPageOpen]);
+
+  return (
+    <>
+      <div
+        className={`app-wrapper min-h-screen ${darkMode
+          ? "dark bg-stone-950 text-stone-100"
+          : "bg-[#f4f1eb] text-[#171717]"
+          }`}
+      >
+        {/* ==================================================
+            NAVBAR
+        ================================================== */}
+
+        <Navbar
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
+        />
+
+        <main>
+          {/* ==================================================
+              HERO
+          ================================================== */}
+
+          <section className="p-8 md:p-0 md:mx-40 my-10 relative z-20">
+            {/* HERO HEADING */}
+
+            <div className="px-6 md:px-12 lg:px-20 xl:px-28">
+              <div className="max-w-6xl mx-auto text-center pt-8 md:pt-12 pb-10 md:pb-14">
+                <p className="text-[10px] md:text-xs uppercase tracking-[0.28em] opacity-50 mb-4">
+                  Graphic Design
+                </p>
+
+                <h1 className="text-4xl font-bold mb-4 md:text-6xl lg:text-7xl tracking-[-0.04em] leading-[1.05]">
+                  Ganesh Chaturthi
+                </h1>
+
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-light mt-6">
+                  Visual Campaign
+                </h2>
+
+                <p className="mt-5 text-xs md:text-sm tracking-wide opacity-50">
+                  Digital Guidebook
+                  <span className="mx-2">•</span>
+                  Festival Awareness
+                  <span className="mx-2">•</span>
+                  Promotional Design
+                </p>
+              </div>
+            </div>
+            {/* PROJECT INTRO */}
+            <div className="px-6 md:px-12 lg:px-20 xl:px-1 mt-16 md:mt-24 mb-10 md:mb-14">
+              <div className="max-w-4xl">
+
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-[-0.04em] leading-[1.05]">
+                  About the Campaign
+                </h2>
+              </div>
+              <p className="mt-6 w-full text-sm md:text-base lg:text-lg leading-7 md:leading-8 opacity-65">
+                A visual campaign for Sri Mandir, featuring a Ganesh Chaturthi guidebook and a promotional banner. The project brings festive content into a cohesive design, using devotional imagery, warm colours and clear typography to create an inviting reading experience.
+              </p>
+            </div>
+            {/* FULL WIDTH HERO IMAGE */}
+
+            <div className="mt-3 justify-center md:flex md:mx-2">
               <img
-                src={img}
-                className="rounded-lg object-cover w-full h-full"
-                alt={`mockup-${i}`}
+                src={Ganesh}
+                alt="Ganesh Chaturthi Visual Campaign"
+                className="w-full h-auto block object-contain"
               />
             </div>
-          ))}
-        </div>
-                    <div className="flex justify-center mt-3 md:mt-10 font-bold">
-                        <h2>LOGO</h2>
-                    </div>
-                    <div className="flex justify-center">
-                        <img src={Logo} alt="logo" className=" h-60 w-60"></img>
-                    </div>
-                    <div className="flex justify-center mt-3 md:mt-10 font-bold">
-                        <h2>COLOR PALETTE</h2>
-                    </div>
-                    <div className="flex justify-center">
-                        <img src={colorpalette2} alt="colorpalette" className="ml-5 h-16 w-96"></img>
-                    </div>
-                    <div className="flex justify-center ">
-                        <img src={Aurat} className="w-60 h-60" />
-                    </div>
-                    <div className="flex justify-center mt-1 mb-10">
-                        <h2 className="festive-regular2 text-4xl">Thank you for your time</h2>
-                    </div>
-                    <div className="flex justify-center mb-10 mx-5">
-                        <p className="flex flex-col">Feel free to provide your valuable suggestion and comments</p>
-                    </div>
-                </div>
-            </div>
-        </>
+          </section>
 
-    );
+          {/* ==================================================
+              A SECTION
+          ================================================== */}
+
+
+          <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pt-8 md:pt-12 pb-0">
+            <span className="text-xs opacity-40">
+              01
+            </span>
+
+            <div className="grid lg:grid-cols-[1fr_0.75fr] gap-12 lg:gap-28 mt-8">
+              {/* LEFT */}
+
+              <div>
+
+                <h2 className="text-4xl md:text-6xl lg:text-7xl tracking-[-0.04em] leading-[1.03] font-medium">
+                  Celebrating tradition
+                  <br />
+                  through visual
+                  <br />
+                  storytelling.
+                </h2>
+              </div>
+
+              {/* RIGHT */}
+
+              <div className="lg:pt-14 space-y-6 text-sm md:text-base leading-8 opacity-65">
+                <p>
+                  I designed the guidebook with a focus on readability,
+                  visual hierarchy and consistent page layouts.
+                  The composition balances imagery and text,
+                  helping readers navigate the content while maintaining a
+                  festive mood throughout.I designed the guidebook with a focus on
+                  readability, visual hierarchy and consistent page layouts.
+                  The composition balances imagery and text, helping readers navigate the content while maintaining a festive mood throughout.
+                </p>
+
+                <p>
+                  The project combines a detailed digital
+                  guidebook with a promotional banner,
+                  covering important aspects of Ganesh
+                  Chaturthi including rituals, puja
+                  essentials, traditions and Visarjan.
+                </p>
+              </div>
+            </div>
+
+            {/* PROJECT INFORMATION */}
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 mt-10 md:mt-12 pt-6 border-t border-black/15 dark:border-white/15">
+              <div>
+                <span className="text-[10px] tracking-[0.18em] uppercase opacity-40">
+                  Role
+                </span>
+
+                <p className="mt-3 text-sm">
+                  Graphic Designer
+                </p>
+              </div>
+
+              <div>
+                <span className="text-[10px] tracking-[0.18em] uppercase opacity-40">
+                  Project Type
+                </span>
+
+                <p className="mt-3 text-sm">
+                  Visual Design
+                </p>
+              </div>
+
+              <div>
+                <span className="text-[10px] tracking-[0.18em] uppercase opacity-40">
+                  Deliverables
+                </span>
+
+                <p className="mt-3 text-sm">
+                  Guidebook · Banner
+                </p>
+              </div>
+
+              <div>
+                <span className="text-[10px] tracking-[0.18em] uppercase opacity-40">
+                  Tools
+                </span>
+
+                <p className="mt-3 text-sm">
+                  Figma · Photoshop
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ==================================================
+              DIGITAL GUIDEBOOK
+          ================================================== */}
+
+
+          <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pb-20 md:pb-28 -mt-24 md:-mt-32">
+
+            {/* IMAGE 1 — FULL WIDTH */}
+            <div className="w-full overflow-hidden">
+              <img
+                src={img1}
+                alt="Ganesh Chaturthi Guidebook Mockup"
+                className="w-full h-auto block object-cover"
+              />
+            </div>
+
+            {/* IMAGE 2 + IMAGE 3 — HALF / HALF */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
+
+              {/* IMAGE 2 */}
+              <div className="w-full overflow-hidden">
+                <img
+                  src={img2}
+                  alt="Ganesh Chaturthi Guidebook Pages"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* IMAGE 3 */}
+              <div className="w-full overflow-hidden">
+                <img
+                  src={img3}
+                  alt="Ganesh Chaturthi Guidebook Detail"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+            </div>
+
+          </section>
+
+          {/* ==================================================
+              PROMOTIONAL BANNER
+          ================================================== */}
+
+          <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 py-20 md:py-32">
+            {/* HEADING */}
+
+            <div className="flex gap-6 md:gap-12 items-start mb-14">
+              <span className="text-xs opacity-40">
+                03
+              </span>
+
+              <div>
+                <p className="text-[10px] md:text-xs tracking-[0.22em] uppercase opacity-50 mb-3">
+                  Promotional Creative
+                </p>
+
+                <h2 className="text-4xl md:text-6xl tracking-[-0.04em]">
+                  Festival Awareness Banner
+                </h2>
+              </div>
+            </div>
+
+            {/* CONTENT */}
+
+            <div className="grid lg:grid-cols-[0.55fr_1.45fr] gap-12 lg:gap-24 items-center">
+              {/* TEXT */}
+
+              <div>
+                <p className="text-base leading-8 opacity-65">
+                  Alongside the guidebook, I designed a
+                  promotional banner to introduce the guide
+                  and encourage users to explore the complete
+                  Ganesh Chaturthi resource.
+                </p>
+
+                <p className="text-base leading-8 opacity-65 mt-5">
+                  The banner follows the same festive visual
+                  language as the guidebook, creating
+                  consistency across the campaign while
+                  highlighting the most important
+                  information.
+                </p>
+              </div>
+
+              {/* IMAGE */}
+
+              <div className="bg-[#e6ded2] dark:bg-stone-900 p-4 md:p-10">
+                <img
+                  src={promotionalBanner}
+                  alt="Ganesh Chaturthi Promotional Banner"
+                  className="w-full h-auto block shadow-2xl"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* ==================================================
+              DESIGN APPROACH
+          ================================================== */}
+
+          <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 py-20 md:py-32">
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-28">
+              {/* LEFT */}
+
+              <div>
+                <span className="text-xs opacity-40">
+                  04
+                </span>
+
+                <p className="text-[10px] tracking-[0.22em] uppercase mt-8 mb-5 opacity-50">
+                  Design Approach
+                </p>
+
+                <h2 className="text-4xl md:text-6xl lg:text-7xl leading-[1.05] tracking-[-0.04em]">
+                  Traditional emotion.
+                  <br />
+                  Modern editorial
+                  <br />
+                  structure.
+                </h2>
+              </div>
+
+              {/* RIGHT */}
+
+              <div className="lg:pt-24">
+                <p className="text-base md:text-lg leading-8 opacity-65 max-w-xl">
+                  I used a warm, devotional and festive visual
+                  direction, combining traditional Indian
+                  elements with a clean editorial layout.
+                </p>
+
+                <p className="text-base md:text-lg leading-8 opacity-65 max-w-xl mt-6">
+                  The visual hierarchy was designed to make
+                  dense festival information feel
+                  approachable while preserving the cultural
+                  character of Ganesh Chaturthi.
+                </p>
+              </div>
+            </div>
+
+            {/* LARGE OUTCOME IMAGE */}
+
+            <div className="mt-20 md:mt-28">
+              <img
+                src={Ganesh2}
+                alt="Ganesh Chaturthi campaign visual"
+                className="w-full h-auto block"
+              />
+            </div>
+          </section>
+
+          {/* ==================================================
+              FINAL CTA
+          ================================================== */}
+
+          <section className="mt-16 bg-[#171717] dark:bg-black text-[#f5f2ec] px-6 md:px-12 lg:px-20 xl:px-28 py-28 md:py-40 text-center">
+            <p className="text-[10px] uppercase tracking-[0.25em] opacity-50">
+              Complete Project
+            </p>
+
+            <h2 className="text-5xl md:text-7xl lg:text-8xl tracking-[-0.05em] leading-[0.95] mt-6">
+              Explore the complete
+              <br />
+              Ganesh Chaturthi guide.
+            </h2>
+
+            <p className="max-w-xl mx-auto text-sm md:text-base leading-7 opacity-50 mt-8">
+              View the complete digital guidebook and explore
+              the detailed festival information, visual
+              system and editorial layouts.
+            </p>
+
+            <a
+              href="https://drive.google.com/drive/folders/1-3V75PjPo_Aa5hZWbkyz3K4NxesoFY6O](https://drive.google.com/drive/folders/1-3V75PjPo_Aa5hZWbkyz3K4NxesoFY6O"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-10 inline-flex items-center gap-12 bg-[#f5f2ec] text-[#171717] px-7 py-4 text-sm font-semibold transition-transform duration-300 hover:-translate-y-1 cursor-pointer"
+            >
+              <span>Explore Guidebook</span>
+
+              <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
+                ↗
+              </span>
+            </a>
+          </section>
+        </main>
+      </div>
+
+      {/* ====================================================
+          PDF DOCUMENT VIEWER
+      ==================================================== */}
+
+      {isDocPageOpen && (
+        <div
+          ref={docPageRef}
+          className="fixed inset-0 z-[120] flex flex-col bg-stone-950 text-stone-100 will-change-transform"
+        >
+          {/* ==================================================
+              PDF TOPBAR
+          ================================================== */}
+
+          <nav className="h-16 border-b border-stone-800 bg-stone-950/95 backdrop-blur-md px-4 md:px-6 flex items-center justify-between flex-shrink-0">
+            {/* BACK */}
+
+            <button
+              onClick={handleCloseDoc}
+              className="inline-flex items-center gap-2 text-stone-400 hover:text-white text-sm font-medium transition cursor-pointer"
+            >
+              <span className="text-xl">
+                ←
+              </span>
+
+              <span className="hidden sm:inline">
+                Back to Case Study
+              </span>
+            </button>
+
+            {/* TITLE */}
+
+            <div className="text-center hidden md:block">
+              <h2 className="font-medium text-sm text-stone-200">
+                Ganesh Chaturthi Visual Campaign
+              </h2>
+
+              <span className="text-[10px] text-stone-500 uppercase tracking-[0.2em]">
+                Digital Guidebook
+              </span>
+            </div>
+
+            {/* ACTIONS */}
+
+            <div className="flex items-center gap-3">
+              <a
+                href={visualDesign}
+                download="Ganesh-Chaturthi-Visual-Campaign.pdf"
+                className="text-xs px-4 py-2 border border-stone-700 hover:bg-stone-800 transition"
+              >
+                Save PDF
+              </a>
+
+              <button
+                onClick={handleCloseDoc}
+                className="w-8 h-8 flex items-center justify-center hover:bg-stone-800 text-stone-400 hover:text-white transition cursor-pointer"
+                aria-label="Close presentation"
+              >
+                ✕
+              </button>
+            </div>
+          </nav>
+
+          {/* ==================================================
+              PDF VIEWPORT
+          ================================================== */}
+
+          <div className="flex-1 bg-[#111] p-3 md:p-7 flex justify-center overflow-hidden">
+            <div className="w-full max-w-5xl h-full overflow-hidden bg-stone-900 shadow-2xl">
+              <iframe
+                src={`${visualDesign}#toolbar=0&navpanes=0&view=FitH`}
+                className="w-full h-full border-none"
+                title="Ganesh Chaturthi Visual Campaign"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
-export default BrewNBake;
+
+export default GaneshChaturthi;
