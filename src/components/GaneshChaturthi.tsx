@@ -421,7 +421,7 @@ function GaneshChaturthi({
               href="https://drive.google.com/drive/folders/1-3V75PjPo_Aa5hZWbkyz3K4NxesoFY6O"
               target="_blank"
               rel="noopener noreferrer"
-              className="group mt-10 inline-flex items-center gap-12 bg-[#f5f2ec] text-[#171717] px-7 py-4 text-sm font-semibold transition-transform duration-300 hover:-translate-y-1 cursor-pointer"
+              className="bg-linear-to-r from-cyan-500 to-blue-500 group mt-10 inline-flex items-center gap-12 bg-[#f5f2ec] text-[#171717] px-7 py-4 text-sm font-semibold transition-transform duration-300 hover:-translate-y-1 cursor-pointer"
             >
               <span>Explore Guidebook</span>
 
