@@ -17,6 +17,9 @@ import GaneshChaturthi from "./components/GaneshChaturthi";
 import EdgeStudio from "./components/EdgeStudio";
 import ContactCard from "./components/ContactCard";
 import ScrollToTop from "./components/ScrollToTop";
+import NavratriPage from "./components/VisualCommunication";
+import VisualCommunication from "./components/VisualCommunication";
+import BannerRedesign from "./components/BannerRedesign";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,10 +85,10 @@ function App() {
                       Shristi Badoni
                     </h1>
                     <h3 className="text-2xl py-2 md:text-3xl">
-                      UI/UX & Product Designer
+                      UI and Visual Designer
                     </h3>
                     <p className="text-md py-5 leading-8 text-gray-800 md:text-xl max-w-lg mx-auto">
-                      I am a UI/UX designer with a passion for creating beautiful and functional designs.
+                      I am a UI and Visual Designer with a passion for creating beautiful and functional designs.
                     </p>
                   </div>
 
@@ -139,6 +142,8 @@ function App() {
         <Route path="/GaneshChaturthi" element={<GaneshChaturthi darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
         <Route path="/EdgeStudio" element={<EdgeStudio darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
         <Route path="/ContactCard" element={<ContactCard />} />
+        <Route path="/VisualCommunication" element={<VisualCommunication darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
+        <Route path="/BannerRedesign" element={<BannerRedesign darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
       </Routes>
     </BrowserRouter>
   );

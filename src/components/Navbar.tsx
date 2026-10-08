@@ -29,7 +29,7 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
 
         <li>
           <a className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-lg font-semibold"
-            href="https://drive.google.com/file/d/1Px3gnQt_Qa0lHvL1Md6Q3RDsi4XWO4Nu/view?usp=sharing"
+            href="https://drive.google.com/file/d/1-VnaL0Thw0ciZbRZir4W1Y2esfuF1AMs/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer">
             Resume
