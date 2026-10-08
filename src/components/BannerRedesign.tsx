@@ -151,7 +151,7 @@ function BannerRedesign({
               SECTION 01 — PROJECT OVERVIEW
           ================================================== */}
 
-                    <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pt-8 md:pt-12 pb-0 -mt-50 md:mt-0">
+                    <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pt-8 md:pt-12 pb-0 -mt-20 md:mt-0">
                         <span className="text-xs opacity-40">
                             01
                         </span>
@@ -171,7 +171,8 @@ function BannerRedesign({
 
                             <div className="lg:pt-14 space-y-6 text-sm md:text-base leading-8 opacity-65">
                                 <p>
-                                    Redesigned Sri Mandir’s Wednesday Special banner with a bright devotional setting, floral details, and a softer background palette. Paired a bold headline with a green day label and reading button to establish a consistent visual hierarchy. The layout balances Lord Ganesha’s imagery with the text, creating a cohesive composition that connects the featured content with its call to action.                                </p>
+                                    Redesigned Sri Mandir’s Wednesday Special banner with a bright devotional setting, floral details, and a softer background palette. Paired a bold headline with a green day label and reading button to establish a consistent visual hierarchy. The layout balances Lord Ganesha’s imagery with the text, creating a cohesive composition that connects the featured content with its call to action.                                
+                                </p>
                             </div>
                         </div>
 
@@ -183,7 +184,7 @@ function BannerRedesign({
               SECTION 02 — GUIDEBOOK VISUALS
           ================================================== */}
 
-                    <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pb-0 md:pb-20 -mt-100 md:-mt-100">
+                    <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pb-0 md:pb-20 -mt-70 md:-mt-100">
                         <div className="w-full h-[300px] md:h-auto block object-cover">
                             <img
                                 src={GaneshChalisa}
@@ -196,7 +197,7 @@ function BannerRedesign({
                     {/* ==================================================
               SECTION 03
           ================================================== */}
-                    <section className="reveal-section p-8 md:p-0 md:mx-40 -mt-170 mb-10 md:my-10 relative z-20">
+                    <section className="reveal-section p-8 md:p-0 md:mx-40 -mt-120 mb-10 md:my-10 relative z-20">
                         {/* HERO HEADING */}
 
                         <div className="px-6 md:px-12 lg:px-20 xl:px-28">
@@ -239,7 +240,7 @@ function BannerRedesign({
               FINAL CTA
           ================================================== */}
 
-                    <section className="-mt-20 md:mt-16 bg-[#171717] dark:bg-black text-[#f5f2ec] px-6 md:px-12 lg:px-20 xl:px-28 py-28 md:py-40 text-center ">
+                    <section className="mt-0 md:mt-16 bg-[#171717] dark:bg-black text-[#f5f2ec] px-6 md:px-12 lg:px-20 xl:px-28 py-28 md:py-40 text-center ">
                         <p className="text-[10px] uppercase tracking-[0.25em] opacity-50">
                             Complete Project
                         </p>

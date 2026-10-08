@@ -199,7 +199,7 @@ function VisualCommunication({
           {/* ==================================================
               SECTION 03
           ================================================== */}
-            <section className="reveal-section px-8 md:p-0 md:mx-40 -mt-150 mb-10 md:my-10 relative z-20">
+            <section className="reveal-section px-8 md:p-0 md:mx-40 -mt-100 mb-10 md:my-10 relative z-20">
             {/* HERO HEADING */}
 
             <div className="px-6 md:px-12 lg:px-20 xl:px-28">
