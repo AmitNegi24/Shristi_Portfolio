@@ -151,7 +151,7 @@ function BannerRedesign({
               SECTION 01 — PROJECT OVERVIEW
           ================================================== */}
 
-                    <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pt-8 md:pt-12 pb-0">
+                    <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pt-8 md:pt-12 pb-0 -mt-50 md:mt-0">
                         <span className="text-xs opacity-40">
                             01
                         </span>
@@ -196,7 +196,7 @@ function BannerRedesign({
                     {/* ==================================================
               SECTION 03
           ================================================== */}
-                    <section className="reveal-section p-8 md:p-0 md:mx-40 mt-0 mb-10 md:my-10 relative z-20">
+                    <section className="reveal-section p-8 md:p-0 md:mx-40 -mt-170 mb-10 md:my-10 relative z-20">
                         {/* HERO HEADING */}
 
                         <div className="px-6 md:px-12 lg:px-20 xl:px-28">
@@ -239,7 +239,7 @@ function BannerRedesign({
               FINAL CTA
           ================================================== */}
 
-                    <section className="mt-16 bg-[#171717] dark:bg-black text-[#f5f2ec] px-6 md:px-12 lg:px-20 xl:px-28 py-28 md:py-40 text-center">
+                    <section className="-mt-20 md:mt-16 bg-[#171717] dark:bg-black text-[#f5f2ec] px-6 md:px-12 lg:px-20 xl:px-28 py-28 md:py-40 text-center ">
                         <p className="text-[10px] uppercase tracking-[0.25em] opacity-50">
                             Complete Project
                         </p>

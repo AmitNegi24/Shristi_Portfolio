@@ -187,7 +187,7 @@ function VisualCommunication({
           ================================================== */}
 
           <section className="reveal-section px-6 md:px-12 lg:px-20 xl:px-28 pb-0 md:pb-20 -mt-100 md:-mt-100">
-            <div className="w-full h-75 md:h-auto block object-cover">
+            <div className="w-full h-75md:h-auto block object-cover">
               <img
                 src={Karna}
                 alt="Ganesh Chaturthi Guidebook Mockup"
@@ -199,11 +199,11 @@ function VisualCommunication({
           {/* ==================================================
               SECTION 03
           ================================================== */}
-            <section className="reveal-section p-8 md:p-0 md:mx-40 mt-0 mb-10 md:my-10 relative z-20">
+            <section className="reveal-section px-8 md:p-0 md:mx-40 -mt-150 mb-10 md:my-10 relative z-20">
             {/* HERO HEADING */}
 
             <div className="px-6 md:px-12 lg:px-20 xl:px-28">
-              <div className="max-w-6xl mx-auto text-center pt-8 md:pt-12 pb-10 md:pb-14">
+              <div className="max-w-6xl mx-auto text-center pt-0 md:pt-12 pb-10 md:pb-14">
                 <h1 className="text-4xl font-bold mb-4 md:text-6xl lg:text-7xl tracking-[-0.04em] leading-[1.05]">
                     Durga — Visual Storytelling
                 </h1>
