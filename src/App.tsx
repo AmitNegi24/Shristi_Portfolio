@@ -17,7 +17,6 @@ import GaneshChaturthi from "./components/GaneshChaturthi";
 import EdgeStudio from "./components/EdgeStudio";
 import ContactCard from "./components/ContactCard";
 import ScrollToTop from "./components/ScrollToTop";
-import NavratriPage from "./components/VisualCommunication";
 import VisualCommunication from "./components/VisualCommunication";
 import BannerRedesign from "./components/BannerRedesign";
 

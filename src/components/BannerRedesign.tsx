@@ -7,7 +7,6 @@ import Navbar from "./Navbar";
 import GaneshChalisa from "../assets/GaneshChalisa.jpeg";
 import Devotion from "../assets/Devotion.jpeg";
 import HanumanChalisa from "../assets/HanumanChalisa.jpeg";
-import Pitru from "../assets/Pitru.jpeg";
 
 gsap.registerPlugin(ScrollTrigger);
 
